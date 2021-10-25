@@ -62,7 +62,9 @@ struct ArticleRowView: View {
                     }
                     .buttonStyle(.bordered)
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        presentShareSheet(url: article.articleURL)
+                    }) {
                         Image(systemName: "square.and.arrow.up")
                     }
                     .buttonStyle(.bordered)

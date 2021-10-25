@@ -12,15 +12,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-       
-        Button(action: {
-            let data = Article.previewData
-            print(data)
-        }, label: {
-            /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-        })
+        
+        TabView {
+            NewsTabView()
+                .tabItem {
+                    Label("News", systemImage: "newspaper")
+                }
+            
+            NewsTabView()
+                .tabItem {
+                    Label("News", systemImage: "newspaper")
+                }
+        }
     }
     
 }
