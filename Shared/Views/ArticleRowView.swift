@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ArticleRowView: View {
     
+    @EnvironmentObject var articleBookmarkViewModel: ArticleBookmarkViewModel
+    
     let article: Article
     
     var body: some View {
@@ -57,11 +59,19 @@ struct ArticleRowView: View {
                     
                     Spacer()
                     
-                    Button(action: {}) {
-                        Image(systemName: "bookmark")
+                    Button(action: {
+                        if articleBookmarkViewModel.isBookmarked(for: article) {
+                            articleBookmarkViewModel.removeBookmark(for: article)
+                        } else {
+                            articleBookmarkViewModel.addBookmark(for: article)    
+                        }
+                    }) {
+                        withAnimation {
+                            Image(systemName: articleBookmarkViewModel.isBookmarked(for: article) ? "bookmark.fill" : "bookmark")
+                        }
                     }
                     .buttonStyle(.bordered)
-                    
+
                     Button(action: {
                         presentShareSheet(url: article.articleURL)
                     }) {

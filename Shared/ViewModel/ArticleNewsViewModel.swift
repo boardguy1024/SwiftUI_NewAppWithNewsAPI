@@ -18,7 +18,7 @@ struct FetchTaskToken: Equatable {
     var category: Category
     var token: Date
 }
-
+ 
 @MainActor
 class ArticleNewsViewModel: ObservableObject {
     
