@@ -19,6 +19,11 @@ struct ContentView: View {
                     Label("News", systemImage: "newspaper")
                 }
             
+            SearchTabView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+            
             BookmarkTabView()
                 .tabItem {
                     Label("Bookmark", systemImage: "bookmark")

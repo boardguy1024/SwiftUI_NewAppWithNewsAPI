@@ -38,7 +38,7 @@ struct Article {
     
     var imageURL: URL? {
         guard let url = urlToImage else { return nil }
-        return URL(string: url)!
+        return URL(string: url)
     }
 }
 
