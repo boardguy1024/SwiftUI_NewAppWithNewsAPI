@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct SwiftUI_NewAppWithNewsAPIApp: App {
     
-    @StateObject var articleBookmarkViewModel = ArticleBookmarkViewModel()
+    @StateObject var articleBookmarkViewModel = ArticleBookmarkViewModel.shared
     
     var body: some Scene {
         WindowGroup {
