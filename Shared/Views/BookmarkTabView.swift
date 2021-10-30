@@ -10,15 +10,30 @@ import SwiftUI
 struct BookmarkTabView: View {
     
     @EnvironmentObject var articleBookmarkViewModel: ArticleBookmarkViewModel
+    @State var searchText: String = ""
     
     var body: some View {
         
         NavigationView {
-            ArticleListView(articles: articleBookmarkViewModel.bookmarks)
+            ArticleListView(articles: searchedArticles)
                 // overlay、ViewBuilderを使わず Zstack {}でもViewの表示は可能
                 .overlay(overlayView(isEmpty: articleBookmarkViewModel.bookmarks.isEmpty))
                 .navigationTitle("Saved Articles")
 
+        }
+        // NavigationBarにTextFieldを表示
+        .searchable(text: $searchText)
+    }
+    
+    private var searchedArticles: [Article] {
+        if searchText.isEmpty {
+            return articleBookmarkViewModel.bookmarks
+        } else {
+            return articleBookmarkViewModel.bookmarks
+                .filter {
+                    $0.title.lowercased().contains(searchText.lowercased()) ||
+                    $0.descriptionText.lowercased().contains(searchText.lowercased())
+                }
         }
     }
     
