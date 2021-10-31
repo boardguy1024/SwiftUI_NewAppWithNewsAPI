@@ -31,6 +31,7 @@
 		404C173627259825009ED8BE /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404C173527259825009ED8BE /* RetryView.swift */; };
 		40752986272D5C0F007AFA06 /* ArticleSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40752985272D5C0F007AFA06 /* ArticleSearchViewModel.swift */; };
 		40752988272D5D56007AFA06 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40752987272D5D56007AFA06 /* SearchTabView.swift */; };
+		4075298A272E95EA007AFA06 /* SearchHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40752989272E95EA007AFA06 /* SearchHistoryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		404C173527259825009ED8BE /* RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryView.swift; sourceTree = "<group>"; };
 		40752985272D5C0F007AFA06 /* ArticleSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchViewModel.swift; sourceTree = "<group>"; };
 		40752987272D5D56007AFA06 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
+		40752989272E95EA007AFA06 /* SearchHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				404C173527259825009ED8BE /* RetryView.swift */,
 				40151F8927293628005DE50B /* BookmarkTabView.swift */,
 				40752987272D5D56007AFA06 /* SearchTabView.swift */,
+				40752989272E95EA007AFA06 /* SearchHistoryListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				404C173427259716009ED8BE /* EmptyPlaceholderView.swift in Sources */,
 				401555BF2722B3CB00042D93 /* NewsAPIResponse.swift in Sources */,
 				401555AF2722AA8300042D93 /* Article.swift in Sources */,
+				4075298A272E95EA007AFA06 /* SearchHistoryListView.swift in Sources */,
 				404C17252725321C009ED8BE /* SafariView.swift in Sources */,
 				404C173027254097009ED8BE /* ArticleNewsViewModel.swift in Sources */,
 			);

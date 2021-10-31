@@ -18,16 +18,35 @@ struct SearchTabView: View {
                 .overlay(overlayView())
                 .navigationTitle("Search")
         }
-        .searchable(text: $viewModel.searchQuery)
-        .onSubmit(of: .search) {
-            Task.init {
-                await viewModel.searchArticle()
-            }
-        }
+        .searchable(text: $viewModel.searchQuery) { suggestionView() }
+        .onSubmit(of: .search, searchArticle)
         .onChange(of: viewModel.searchQuery) { newValue in
             if newValue.isEmpty {
                 viewModel.phase = .empty
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func suggestionView() -> some View {
+        ForEach(["Specialized","Tarmac SL7","Sworks","Surfing","sramred"], id: \.self) { text in
+            Button(action: {
+                viewModel.searchQuery = text
+            }) {
+                Text(text)
+            }
+        }
+    }
+    
+    private func searchArticle() {
+        
+        let searchQuery = viewModel.searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !searchQuery.isEmpty {
+            viewModel.addHistory(text: searchQuery)
+        }
+        
+        Task.init {
+            await viewModel.searchArticle()
         }
     }
     
@@ -40,22 +59,23 @@ struct SearchTabView: View {
     }
     
     @ViewBuilder
-    func overlayView() -> some View {
+    private func overlayView() -> some View {
         switch viewModel.phase {
         case .empty:
             if !viewModel.searchQuery.isEmpty {
                 ProgressView()
-            } else {
+            } else if !viewModel.historyTextList.isEmpty {
+                SearchHistoryListView(viewModel: viewModel) { tappedSearchText in
+                    viewModel.searchQuery = tappedSearchText
+                }
+            }
+            else {
                 EmptyPlaceholderView(text: "Type your query to search from NewsAPI", image: .init(systemName: "magnifyingglass"))
             }
         case .success(let articles) where articles.isEmpty:
             EmptyPlaceholderView(text: "No Search results found", image: .init(systemName: "magnifyingglass"))
         case .failure(let error):
-            RetryView(text: error.localizedDescription, retryAction: {
-                Task.init {
-                    await viewModel.searchArticle()
-                }
-            })
+            RetryView(text: error.localizedDescription, retryAction: searchArticle)
         default:
             EmptyView()
         }
